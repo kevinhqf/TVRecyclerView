@@ -5,12 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * @author HeQinfu
- * @copyright 康佳集团股份有限公司保留所有版权。
- * @description
- * @created on 2017-11-2。
- */
+
 
 public abstract class TVRecyclerViewAdapter<VH extends TVRecyclerViewAdapter.ViewHolder> extends RecyclerView.Adapter<VH> {
 

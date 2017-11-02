@@ -9,12 +9,7 @@ import android.view.FocusFinder;
 import android.view.KeyEvent;
 import android.view.View;
 
-/**
- * @author HeQinfu
- * @copyright 康佳集团股份有限公司保留所有版权。
- * @description
- * @created on 2017-11-1。
- */
+
 
 public class TVRecyclerView extends RecyclerView {
     private static final String TAG = "TVRecyclerView";

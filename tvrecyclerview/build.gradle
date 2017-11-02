@@ -1,10 +1,17 @@
 apply plugin: 'com.android.library'
 
+//添加以下两个插件
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
 
 
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.2"
+
+    //资源前缀
+    resourcePrefix "kevinhqf_"
+
 
     defaultConfig {
         minSdkVersion 19
@@ -35,4 +42,88 @@ buildscript {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:recyclerview-v7:26.0.0-alpha1'
+}
+
+//你的library的地址
+def siteUrl = 'https://github.com/kevinhqf/TVRecyclerView'
+def gitUrl = 'https://github.com/kevinhqf/TVRecyclerView.git'
+def issueUrl = 'https://github.com/kevinhqf/TVRecyclerView/issues'
+
+//这个蛮重要的，你上传到jCenter后一些文件存放的路径，如果不写或者写错了的话
+//可以不会产生pom文件，后面上传到jCenter后会报错，这个问题我搞了一下午！
+group = "kevinhqf.library.dev"
+install {
+    repositories.mavenInstaller {
+        // POM.xml文件内容
+        pom {
+            project {
+                packaging 'aar'
+                // 添加描述，不重要
+                name 'tv recycler view'
+                url siteUrl
+                // 协议
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'kevinhqf' //your user ID
+                        name 'kevinhqf' //your name
+                        email 'kevin.ho.hqf@gmail.com' //your email
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
+            }
+        }
+    }
+}
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+
+    //增加编码，这行很重要，如果是windows系统，同时如果在代码中有中文的话，不加这行，上传会报错
+    options.encoding="utf-8"
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+    configurations = ['archives']
+    pkg {
+        //发布到Bintray的哪个仓库
+        repo = "maven"
+        //发布到Bintray上的名字
+        name = "tvrecyclerview"
+        //项目描述
+        desc = "tv recyclerview"
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        issueTrackerUrl = issueUrl
+        licenses = ["Apache-2.0"]
+        //标签
+        labels = ['android']
+        publish = true
+        publicDownloadNumbers = true
+    }
 }
