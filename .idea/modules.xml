@@ -5,8 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/TVRecyclerView.iml" filepath="$PROJECT_DIR$/TVRecyclerView.iml" />
       <module fileurl="file://$PROJECT_DIR$/TVRecyclerViewDemo.iml" filepath="$PROJECT_DIR$/TVRecyclerViewDemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/tvrecyclerview/tvrecyclerview.iml" filepath="$PROJECT_DIR$/tvrecyclerview/tvrecyclerview.iml" />
       <module fileurl="file://$PROJECT_DIR$/tvrecyclerview/tvrecyclerview.iml" filepath="$PROJECT_DIR$/tvrecyclerview/tvrecyclerview.iml" />
     </modules>
   </component>

@@ -4,10 +4,10 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
-
+version="0.1.0"
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.2"
+    compileSdkVersion 25
+    buildToolsVersion "25.0.3"
 
     //资源前缀
     resourcePrefix "kevinhqf_"
@@ -15,7 +15,7 @@ android {
 
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 26
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
 
@@ -51,7 +51,7 @@ def issueUrl = 'https://github.com/kevinhqf/TVRecyclerView/issues'
 
 //这个蛮重要的，你上传到jCenter后一些文件存放的路径，如果不写或者写错了的话
 //可以不会产生pom文件，后面上传到jCenter后会报错，这个问题我搞了一下午！
-group = "kevinhqf.library.dev"
+group = "kevinho.view.dev"
 install {
     repositories.mavenInstaller {
         // POM.xml文件内容
@@ -92,9 +92,13 @@ task sourcesJar(type: Jar) {
 task javadoc(type: Javadoc) {
 
     //增加编码，这行很重要，如果是windows系统，同时如果在代码中有中文的话，不加这行，上传会报错
-    options.encoding="utf-8"
     source = android.sourceSets.main.java.srcDirs
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    options.encoding "UTF-8"
+    options.charSet 'UTF-8'
+    options.author true
+    options.version true
+    failOnError false
 }
 task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'

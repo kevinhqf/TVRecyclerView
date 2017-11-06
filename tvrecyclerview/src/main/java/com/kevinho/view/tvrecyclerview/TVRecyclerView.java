@@ -2,6 +2,7 @@ package com.kevinho.view.tvrecyclerview;
 
 import android.content.Context;
 import android.graphics.Point;
+import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
@@ -62,6 +63,7 @@ public class TVRecyclerView extends RecyclerView {
         if (focusView == null) {
             return result;
         } else {
+            // TODO: 2017-11-3 解决不同viewType的item滑动
             int dy = 0;
             int dx = 0;
             if (getChildCount() > 0) {
@@ -90,6 +92,16 @@ public class TVRecyclerView extends RecyclerView {
         return result;
     }
 
+    @Override
+    public boolean isInTouchMode() {
+        boolean result = super.isInTouchMode();
+        // 解决4.4版本抢焦点的问题
+        if (Build.VERSION.SDK_INT == 19) {
+            return !(hasFocus() && !result);
+        } else {
+            return result;
+        }
+    }
     /**
      * 找到下一个焦点的itemView
      *

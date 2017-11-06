@@ -5,11 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#6e07f5"
+    android:background="#474050"
     android:padding="16dp">
 
     <com.kevinho.view.tvrecyclerview.TVRecyclerView
         android:id="@+id/rv_list"
+        android:padding="16dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

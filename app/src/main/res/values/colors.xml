@@ -4,5 +4,14 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="bgColor">#af51616b</color>
-    
+    <color name="color">#0793ea</color>
+    <color name="color1">#07eabd</color>
+    <color name="color2">#ea0756</color>
+    <color name="color3">#e2ea07</color>
+    <color name="color4">#07ea5a</color>
+    <color name="color5">#ea8b07</color>
+    <color name="color6">#b907ea</color>
+    <color name="color7">#5f30ec</color>
+    <color name="color8">#ec55f4</color>
+    <color name="color9">#f14616</color>
 </resources>
