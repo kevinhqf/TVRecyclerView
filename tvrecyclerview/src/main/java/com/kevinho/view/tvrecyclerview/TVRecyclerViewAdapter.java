@@ -18,7 +18,7 @@ public abstract class TVRecyclerViewAdapter<VH extends TVRecyclerViewAdapter.Vie
     @Override
     public void onBindViewHolder(VH holder, final int position) {
         holder.itemView.setFocusable(true);
-        onDataBinding(holder, position);
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -31,9 +31,9 @@ public abstract class TVRecyclerViewAdapter<VH extends TVRecyclerViewAdapter.Vie
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    focusIn(v);
+                    focusIn(v,position);
                 } else {
-                    focusOut(v);
+                    focusOut(v,position);
                 }
                 // 重绘,使item的绘制顺序调整生效
                 ViewGroup parent = (ViewGroup) v.getParent();
@@ -43,7 +43,20 @@ public abstract class TVRecyclerViewAdapter<VH extends TVRecyclerViewAdapter.Vie
                 }
             }
         });
+        onDataBinding(holder, position);
     }
+
+
+    /**
+     * 实现失去焦点时的动画
+     */
+    protected abstract void focusOut(View v, int position) ;
+
+    /**
+     * 实现获取焦点时的动画
+     */
+    protected abstract void focusIn(View v, int position) ;
+
 
 
     @Override
@@ -59,19 +72,8 @@ public abstract class TVRecyclerViewAdapter<VH extends TVRecyclerViewAdapter.Vie
      */
     protected abstract void onDataBinding(VH holder, int position);
 
-    /**
-     * 实现获取焦点时的动画
-     *
-     * @param v
-     */
-    protected abstract void focusIn(View v);
 
-    /**
-     * 实现失去焦点时的动画
-     *
-     * @param v
-     */
-    protected abstract void focusOut(View v);
+
 
 
     public interface OnItemClickListener {

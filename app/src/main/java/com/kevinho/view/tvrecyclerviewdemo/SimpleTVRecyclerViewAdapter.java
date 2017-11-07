@@ -57,7 +57,7 @@ public class SimpleTVRecyclerViewAdapter extends TVRecyclerViewAdapter<TVRecycle
     }
 
     @Override
-    protected void focusOut(View v) {
+    protected void focusOut(View v,int pos) {
         ObjectAnimator scaleX = ObjectAnimator.ofFloat(v, "scaleX", 1.05f, 1.0f);
         ObjectAnimator scaleY = ObjectAnimator.ofFloat(v, "scaleY", 1.05f, 1.0f);
         AnimatorSet set = new AnimatorSet();
@@ -66,7 +66,7 @@ public class SimpleTVRecyclerViewAdapter extends TVRecyclerViewAdapter<TVRecycle
     }
 
     @Override
-    protected void focusIn(View v) {
+    protected void focusIn(View v,int pos) {
         ObjectAnimator scaleX = ObjectAnimator.ofFloat(v, "scaleX", 1.0f, 1.05f);
         ObjectAnimator scaleY = ObjectAnimator.ofFloat(v, "scaleY", 1.0f, 1.05f);
         AnimatorSet set = new AnimatorSet();
